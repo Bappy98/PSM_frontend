@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.common-home-bac{
+    background-image: url("../../assets/psm-home.jpg");
+  
+    background-repeat: no-repeat;
+    /* Set the background size to a larger value to make the image appear larger than the container */
+    background-size: 100% 100%; /* Adjust the percentage as needed */
+    /* Center the image both horizontally and vertically */
+    height: 100vh;
+  
+    /* Create a semi-transparent overlay with a dark color */
+    /*background-color: rgba(9, 0, 0, 0.971); */
+    /* Adjust the color and opacity as needed */
+  }
+
+  .btn {
+    @apply bg-white p-1 mx-1 rounded-md my-2 disabled:opacity-60
+  }
+  .btn1 {
+    @apply  p-2 mx-1 rounded-md my-2 disabled:opacity-60
+  }
+
+  .btnDiv{
+    @apply flex  py-5 mx-5 
+  }
+  .button {
+    @apply relative flex items-center justify-center p-3 bg-blue-500 text-white rounded
+  }
+
+  
