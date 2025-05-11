@@ -117,8 +117,8 @@ const Login = () => {
             )}
           </form>
           <div className="flex justify-between mt-2">
-          <div className="text-lg">Don't have an account?</div>
-          <div onClick={()=>navigate('/register')} className="font-semibold text-lg cursor-pointer">Register</div>
+          {/* <div className="text-lg">Don't have an account?</div>
+          <div onClick={()=>navigate('/register')} className="font-semibold text-lg cursor-pointer">Register</div> */}
           </div>
         </div>
       </div>

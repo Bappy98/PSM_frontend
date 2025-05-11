@@ -41,13 +41,13 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<UserLayout/>}>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/register' element={<Register/>} />
+       
+        <Route path='/' element={<Login/>}/>
+        {/* <Route path='/register' element={<Register/>} />
         <Route path='/medicine' element={<AllMedicine/>}/>
         <Route path="/product" element={<Product/>}/>
         {/* <Route path="/contact" element={}/> */}
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<Login />} /> 
       </Route>
       <Route path='/' element={<Layout/>}>
       <Route

@@ -11,7 +11,8 @@ import fetchWrapper from "../../util/fetchWrapper";
 import { useGetCompanyQuery } from "../../store/api/company/companyApiSlice";
 import Textarea from "../ui/Textarea";
 import { useNavigate, useParams } from "react-router-dom";
-import { useUpdateMedicineMutation } from "@/store/api/medicine/medicineApiSlice";
+import { useGetMedicineQuery, useUpdateMedicineMutation } from "@/store/api/medicine/medicineApiSlice";
+import { useDispatch } from "react-redux";
 
 const schema = yup
   .object({
@@ -42,6 +43,8 @@ function MedicineForm({ initialData = null, isEdit = false }) {
   const { data: company, error, loading } = useGetCompanyQuery();
   const [companyOptions, setCompanyOptions] = useState([]);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  
   const [updateMedicine, { isLoading: isUpdating }] = useUpdateMedicineMutation()
   useEffect(() => {
     if (company) {
@@ -75,9 +78,10 @@ function MedicineForm({ initialData = null, isEdit = false }) {
         // Create a new medicine
         const response = await fetchWrapper.post("/medicine/create", formData);
         console.log("Create response:", response);
+        navigate("/medicine-list");
       }
   
-      navigate("/medicine-list");
+      
       reset();
     } catch (error) {
       console.error("Error during form submission:", error);

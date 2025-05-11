@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className="">
         <img src={logo} alt="Logo" className="h-16 w-16" />
       </div>
-      <div>
+      {/* <div>
         {navLinks.map((item, i) => (
           <Link
             key={i}
@@ -37,7 +37,7 @@ const Navbar = () => {
       <Link to={'/login'} className="bg-black-400 px-4 py-2 mx-2 rounded-lg hover:bg-blue-600 hover:text-white">
         logIn
       </Link>
-      </div>
+      </div> */}
     </header>
     </nav>
   );

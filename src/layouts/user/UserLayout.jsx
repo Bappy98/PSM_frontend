@@ -17,7 +17,7 @@ let route;
       route = 'branch';
       break;
     case 'user':
-      route = 'customerHome'
+      route = 'login'
       break;
     default:
       route = '/';
