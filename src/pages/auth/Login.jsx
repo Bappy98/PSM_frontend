@@ -19,6 +19,9 @@ const schema = yup.object({
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const url = import.meta.env.VITE_API_URL;
+  console.log(url);
+  
   
   const {
     register,
