@@ -18,10 +18,17 @@ export const medicineApi = apiSlice.injectEndpoints({
         method: "PUT",
         body: updateMedicine,
       }),
-      invalidatesTags: (result, error, { id }) => [
+      deleteMedicine: builder.mutation({
+      query: (id) => ({
+        url: `/medicine/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (result, error, id) => [
         { type: "Medicine", id },
         { type: "Medicine", id: "LIST" },
       ],
+    }),
+ 
     }),
   }),
 });

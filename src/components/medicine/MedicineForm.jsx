@@ -45,20 +45,29 @@ function MedicineForm({ initialData = null, isEdit = false }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   
-  const [updateMedicine, { isLoading: isUpdating }] = useUpdateMedicineMutation()
+ console.log(company);
+ 
   useEffect(() => {
     if (company) {
-      setCompanyOptions(company.map((item) => item.name));
+      setCompanyOptions(company.map((item) => {
+        return {
+          value: item._id,
+          label: item.name,
+        };
+      }));
     }
   }, [company]);
+  console.log(companyOptions);
+  
 
   useEffect(()=>{
     if(initialData) {
       reset({
         ...initialData,
-        company:initialData.company.name,
+        company:initialData.company._id,
       })
-      setBase64Logo(initialData.image)
+    
+      //setBase64Logo(initialData.image)
     }
   },[initialData,reset])
 
@@ -69,17 +78,22 @@ function MedicineForm({ initialData = null, isEdit = false }) {
         image: base64Logo,
       };
       console.log("Submitting data:", formData);
+      console.log(id);
+      
   
-      if (isEdit && id) {
-        // Attempt to update the medicine
-        const response = await fetchWrapper.put(`/medicine/${id}`, formData);
+      if(id ) {
+        // Update an existing medicin
+        
+       const response = await fetchWrapper.put(`/medicine/${id}`, formData);
         console.log("Update response:", response);
-      } else {
+        // const { data } = useGetMedicineQuery();
+        navigate("/medicine-list");
+      }
         // Create a new medicine
         const response = await fetchWrapper.post("/medicine/create", formData);
         console.log("Create response:", response);
         navigate("/medicine-list");
-      }
+      
   
       
       reset();
@@ -94,7 +108,7 @@ function MedicineForm({ initialData = null, isEdit = false }) {
       <Title>Create Medicine</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mx-5">
-          <FileInput
+        {   <FileInput
             label={"image"}
             name="image"
             register={register}
@@ -102,8 +116,8 @@ function MedicineForm({ initialData = null, isEdit = false }) {
             error={errors.image}
             setBase64Logo={setBase64Logo}
             base64Logo={base64Logo}
-            required={true}
-          />
+            //required={true}
+          /> }
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 mx-5 gap-5">
           <TextInput
@@ -126,7 +140,7 @@ function MedicineForm({ initialData = null, isEdit = false }) {
           />
           <Select
             label={"Company"}
-            defaultValue={""}
+            defaultValue={companyOptions ? companyOptions.value : ""}
             options={companyOptions}
             name="company"
             register={register}

@@ -6,8 +6,8 @@ import TextInput from "../ui/TextInput";
 import Button from "../Button/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import fetchWrapper from "@/util/fetchWrapper";
 
 const schema = yup
@@ -16,12 +16,13 @@ const schema = yup
     name: yup.string().required().label("Name"),
     address: yup.string().required().label("Address"),
     phone: yup.string().required().label("Phone"),
-    image: yup.mixed().required("A Image is required"),
+    //image: yup.mixed().required("A Image is required"),
   })
   .required();
-function CreateCompany() {
-  const [base64Logo, setBase64Logo] = useState(null);
+function CreateCompany({ initialData = null, isEdit = false }) {
+ // const [base64Logo, setBase64Logo] = useState(null);
   const navigate = useNavigate()
+  const {id} = useParams()
   const {
     register,
     formState: { errors },
@@ -32,19 +33,35 @@ function CreateCompany() {
     mode: "all",
     resolver: yupResolver(schema),
   });
+  useEffect(() => {
+    if (initialData) {
+      reset(initialData);
+    }
+  }, [initialData]);
 
   const onSubmit = async (data) => {
     const formData = {
       ...data,
-      logo: base64Logo,
+     // logo: base64Logo,
     };
   
     try {
-      const res = await fetchWrapper.post("/company/create", formData);
+      let url;
+      if (isEdit && id) {
+        url = `/company/${id}`;
+       await fetchWrapper.put(url, formData);
+       reset();  
+      navigate('/company-list');
+      } else {
+        url = "/company/create";
+         await fetchWrapper.post(url, formData);
+         reset();  
+      navigate('/company-list');
+      }
       
-      reset();  
-      navigate('/company-list'); 
-      setBase64Logo(null);  // Reset base64Logo state
+      
+       
+      
     } catch (error) {
       console.error('Error creating company:', error);
       // Handle error state or show error message to user
@@ -57,7 +74,7 @@ function CreateCompany() {
       <Title>Create Company</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-5">
-        <FileInput
+        {/* <FileInput
             label="Image"
             name="image"
             register={register}
@@ -67,7 +84,7 @@ function CreateCompany() {
             base64Logo={base64Logo}
             id="image"
             required={true}
-          />
+          /> */}
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
           <TextInput

@@ -20,6 +20,7 @@ import BranchStore from "@/pages/BranchPages/store"
 import BranchRegister from "@/pages/branchRegister"
 import CashMemo from "@/pages/cashMemo"
 import CompanyCreate from "@/pages/company"
+import CompanyEdit from "@/pages/company/CompanyEdit"
 import CompanyList from "@/pages/company/CompanyList"
 import BranchCreate from "@/pages/CreateBranch"
 import MyOrder from "@/pages/customer/myOrder"
@@ -72,6 +73,8 @@ function App() {
       <Route path='/branch-register' element={<BranchRegister/>}/>
       <Route path='/branch-create' element={<BranchCreate/>}/>
       <Route path='/company-create' element={<CompanyCreate/>}/>
+      <Route path='/company-edit/:id' element={<CompanyEdit/>}/>
+
       <Route path='/company-list' element={<CompanyList/>}/>
       <Route path='/medicine-edit/:id' element={<MedicineEdit/>}/>
       <Route path='/medicine-create' element={<MedicineCreate/>}/>
