@@ -39,7 +39,7 @@ function MedicineForm({ initialData = null, isEdit = false }) {
     resolver: yupResolver(schema),
     defaultValues:initialData||{}
   });
-  const [base64Logo, setBase64Logo] = useState(initialData?.image||null);
+ 
   const { data: company, error, loading } = useGetCompanyQuery();
   const [companyOptions, setCompanyOptions] = useState([]);
   const navigate = useNavigate()
@@ -74,8 +74,7 @@ function MedicineForm({ initialData = null, isEdit = false }) {
   const onSubmit = async (data) => {
     try {
       const formData = {
-        ...data,
-        image: base64Logo,
+        ...data
       };
       console.log("Submitting data:", formData);
       console.log(id);
@@ -105,19 +104,10 @@ function MedicineForm({ initialData = null, isEdit = false }) {
 
   return (
     <div className="max-w-[900px] bg-blue-300 rounded-xl shadow-lg shadow-black-400">
-      <Title>Create Medicine</Title>
+      <Title>{isEdit ? "Update" : "Add"} Medicine</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mx-5">
-        {   <FileInput
-            label={"image"}
-            name="image"
-            register={register}
-            control={control}
-            error={errors.image}
-            setBase64Logo={setBase64Logo}
-            base64Logo={base64Logo}
-            //required={true}
-          /> }
+       
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 mx-5 gap-5">
           <TextInput
@@ -140,7 +130,7 @@ function MedicineForm({ initialData = null, isEdit = false }) {
           />
           <Select
             label={"Company"}
-            defaultValue={companyOptions ? companyOptions.value : ""}
+            defaultValue={companyOptions ? companyOptions?.value : ""}
             options={companyOptions}
             name="company"
             register={register}
@@ -195,7 +185,7 @@ function MedicineForm({ initialData = null, isEdit = false }) {
           />
         </div>
         <div className="btnDiv justify-end">
-        <button className="button" type="submit">Add Medicine</button>
+        <button className="button" type="submit">{id ? "Update" : "Create"}</button>
         </div>
       </form>
     </div>

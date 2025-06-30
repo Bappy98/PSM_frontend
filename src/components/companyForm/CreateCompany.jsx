@@ -71,7 +71,7 @@ function CreateCompany({ initialData = null, isEdit = false }) {
 
   return (
     <div className="max-w-[900px] bg-blue-300 p-5 rounded-xl shadow-lg shadow-black-400">
-      <Title>Create Company</Title>
+      <Title>{id ? 'Update' : 'Create'} Company</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-5">
         {/* <FileInput
@@ -116,7 +116,7 @@ function CreateCompany({ initialData = null, isEdit = false }) {
           />
         </div>
         <div className="btnDiv justify-end">
-        <button className="button" type="submit">Create</button>
+        <button className="button" type="submit">{id ? 'Update' : 'Create'}</button>
         </div>
       </form>
     </div>
