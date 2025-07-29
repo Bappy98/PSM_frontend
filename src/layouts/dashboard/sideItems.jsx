@@ -50,12 +50,12 @@ export const sidebarItems = [
       dropdown: false,
       linkto:"/medicine-list"
     },
-    {
-      icon: <VaccinesIcon />,
-      label: "Order",
-      dropdown: false,
-      linkto:"/order-list"
-    },
+    // {
+    //   icon: <VaccinesIcon />,
+    //   label: "Order",
+    //   dropdown: false,
+    //   linkto:"/order-list"
+    // },
     // Add more items as needed
   ];
 

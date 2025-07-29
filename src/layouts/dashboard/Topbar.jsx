@@ -63,11 +63,11 @@ const Topbar = ({ sidebarCollapsed }) => {
           <img src={avatarIcon} className="h-16 w-16" alt="" />
         </Box>
         <Box>
-          <IconButton color="black" component={Link} to="/notifications">
+          {/* <IconButton color="black" component={Link} to="/notifications">
             <Badge badgeContent={4} color="error">
               <Notifications />
             </Badge>
-          </IconButton>
+          </IconButton> */}
           <IconButton color="inherit" onClick={handleMenuClick}>
             <Avatar src="/path/to/avatar.jpg" alt="User Avatar" />
             <Box sx={{ flexGrow: 1, ml: 1 }}>

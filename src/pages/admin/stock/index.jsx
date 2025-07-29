@@ -89,7 +89,7 @@ function Stock() {
 
       {isModalOpen && (
        <div>
-       <div className='min-h-screen w-full bg-blue-500 opacity-30 absolute inset-0'></div>
+       {/* <div className='min-h-screen w-full bg-blue-500 opacity-30 absolute inset-0'></div>
        <div className='absolute bg-blue-500 rounded-lg  h-36 w-96 top-6 mx-auto right-0 left-0'>
        <form className='flex justify-center items-center my-auto h-32 flex-col' onSubmit={handleSubmit(onSubmit)}>
        <TextInput
@@ -107,7 +107,41 @@ function Stock() {
        <button className='btn hover:bg-red-500' onClick={()=>setIsModalOpen(null)}>cancel</button>
        </div>
        </form>
+      </div> */}
+      <div className="fixed inset-0 bg-black bg-opacity-40 z-40 flex justify-center items-center">
+  <div className="bg-gray-300 rounded-xl shadow-xl w-96 p-6 relative z-50">
+    <h2 className="text-lg font-semibold text-blue-600 mb-4 text-center">
+      Add {isModalOpen.name}
+    </h2>
+    <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+      <TextInput
+        type="number"
+        label={`Quantity`}
+        placeholder="Enter a number"
+        className="px-2 shadow-md rounded-sm border border-slate-500"
+        register={register}
+        name="quantity"
+        error={errors.quantity}
+      />
+      <div className="flex justify-end gap-3">
+        <button
+          type="submit"
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+        >
+          Submit
+        </button>
+        <button
+          type="button"
+          onClick={() => setIsModalOpen(null)}
+          className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+        >
+          Cancel
+        </button>
       </div>
+    </form>
+  </div>
+</div>
+
       </div>
       )}
     </div>
