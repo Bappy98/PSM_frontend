@@ -16,7 +16,7 @@ const schema = yup
     name: yup.string().required().label("Name"),
     address: yup.string().required().label("Address"),
     phone: yup.string().required().label("Phone"),
-    logo: yup.mixed().required("Logo is required"),
+   // logo: yup.mixed().required("Logo is required"),
   })
   .required();
 
@@ -56,7 +56,7 @@ function BranchForm() {
   const onSubmit = async (data) => {
     const formData = {
       ...data,
-      logo: base64Logo,
+      //logo: base64Logo,
     };
     console.log(formData);
     try {
@@ -72,7 +72,7 @@ function BranchForm() {
       <Title>Branch Create</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-5">
-          <FileInput
+          {/* <FileInput
             label="Logo"
             name="logo"
             register={register}
@@ -82,7 +82,7 @@ function BranchForm() {
             base64Logo={base64Logo}
             id="logo"
             required={true}
-          />
+          /> */}
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
           <Select
